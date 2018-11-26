@@ -13,8 +13,6 @@ namespace AspNetVS2017.Capitulo01.Troco
         private void calcularButton_Click(object sender, EventArgs e)
         {
 
-
-            int moed = 0;
             decimal valorCompra = Convert.ToDecimal(valorCompraTextBox.Text);
             decimal valorPago = Convert.ToDecimal(valorPagoTextBox.Text); 
             decimal valorTroco = (valorPago - valorCompra);
@@ -57,8 +55,7 @@ namespace AspNetVS2017.Capitulo01.Troco
             moedasListView.Items[4].Text = moedas005.ToString();
             moedasListView.Items[5].Text = moedas001.ToString();
             */
-
-
+            
         }
 
         private void moedasListView_SelectedIndexChanged(object sender, EventArgs e)
