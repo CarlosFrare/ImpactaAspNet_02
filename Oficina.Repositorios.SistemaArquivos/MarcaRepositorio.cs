@@ -41,17 +41,16 @@ namespace Oficina.Repositorios.SistemaArquivos
             {
                 var propriedades = linha.Split('|');
 
-                if (Convert.ToInt32(propriedades) == id)
+                if (Convert.ToInt32(propriedades[0]) == id)
                 {
                     marca = new Marca();
                     marca.Id = Convert.ToInt32(propriedades[0]);
                     marca.Nome = propriedades[1];
                     break;
                 }
-
             }
-
             return marca;
         }
+
     }
 }
