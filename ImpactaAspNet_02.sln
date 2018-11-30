@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oficina.Repositorios.Sistem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oficina.Repositorios.SistemaArquivosTests", "Oficina.Repositorios.SistemaArquivosTests\Oficina.Repositorios.SistemaArquivosTests.csproj", "{4E18AF3D-3DA9-4886-A044-65718A4D397F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oficina.WebPages", "Oficina.WebPages\Oficina.WebPages.csproj", "{DD971177-096A-408C-9202-AA68F60AD791}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{4E18AF3D-3DA9-4886-A044-65718A4D397F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E18AF3D-3DA9-4886-A044-65718A4D397F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E18AF3D-3DA9-4886-A044-65718A4D397F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD971177-096A-408C-9202-AA68F60AD791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD971177-096A-408C-9202-AA68F60AD791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD971177-096A-408C-9202-AA68F60AD791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD971177-096A-408C-9202-AA68F60AD791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{A02FD4C2-7F2E-4ECC-AFEE-A4383F6E656C} = {23AF2426-1E80-4B11-8439-F4CBACF97057}
 		{C0E8E230-DB7C-4011-B9E6-EFC6A6876040} = {23AF2426-1E80-4B11-8439-F4CBACF97057}
 		{4E18AF3D-3DA9-4886-A044-65718A4D397F} = {23AF2426-1E80-4B11-8439-F4CBACF97057}
+		{DD971177-096A-408C-9202-AA68F60AD791} = {23AF2426-1E80-4B11-8439-F4CBACF97057}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6935C15F-EA3B-4605-A412-F64C87B90F27}

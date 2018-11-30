@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- para esse exemplo é necessario criar a estrutura RAIZ-->
+<veiculos>
+  <Veiculo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Id>3d18ef40-0733-407e-a540-dfe93d6cd551</Id>
+    <Placa>PUW-1514</Placa>
+    <Ano>2014</Ano>
+    <Observacao>teste</Observacao>
+    <Modelo>
+      <Id>4</Id>
+      <Nome>RANGER</Nome>
+      <Marca>
+        <Id>4</Id>
+        <Nome>FORD</Nome>
+      </Marca>
+    </Modelo>
+    <Cor>
+      <Id>2</Id>
+      <Nome>Azul</Nome>
+    </Cor>
+    <Combustivel>Flex</Combustivel>
+    <Cambio>Automatico</Cambio>
+  </Veiculo>
+</veiculos>

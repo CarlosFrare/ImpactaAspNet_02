@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static System.Configuration.ConfigurationManager;
+
 namespace Oficina.Repositorios.SistemaArquivos
+
 {
     public class MarcaRepositorio
     {
-        private string caminhoArquivo = ConfigurationManager.AppSettings["caminhoArquivoMarca"];
+
+        /// <summary>
+        /// Medtodo para chamar o arquivo XML
+        /// </summary>
+        private string caminhoArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                AppSettings["caminhoArquivoMarca"]);
 
         public List<Marca> Selecionar()
         {
