@@ -27,13 +27,16 @@ namespace Oficina.Repositorios.SistemaArquivos
         }
 
         //gravar os registros em um arquivo XML
-        public void Inserir(Veiculo veiculo)
+        
+        // public void Inserir (Veiculo veiculo)
+
+        public void Inserir<T> (T veiculo) where T: Veiculo
         {
             arquivoXML = XDocument.Load(caminhoArquivo);
 
             var registro = new StringWriter();
 
-            new XmlSerializer(typeof(Veiculo)).Serialize(registro, veiculo);
+            new XmlSerializer(typeof(T)).Serialize(registro, veiculo);
 
             arquivoXML.Root.Add(XElement.Parse(registro.ToString()));
 

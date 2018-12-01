@@ -46,5 +46,26 @@ namespace Oficina.WebPages
             Cambios = Enum.GetValues(typeof(Cambio)).Cast<Cambio>().ToList();
 
             }
+
+        public void Inserir()
+        {
+            var veiculo = new VeiculoPasseio();
+            var formulario = HttpContext.Current.Request.Form;
+
+            veiculo.Ano = Convert.ToInt32(formulario["ano"]);
+            veiculo.Cambio = (Cambio)Convert.ToInt32(formulario["cambio"]);
+            veiculo.Carroceria = Carroceria.Hatch;
+            veiculo.Combustivel = (Combustivel)Convert.ToInt32(formulario["combustivel"]);
+            veiculo.Cor = corRepositorio.Selecionar(Convert.ToInt32(formulario["Cor"]));
+            veiculo.Modelo = modeloRepositorio.Selecionar(Convert.ToInt32(formulario["modelo"]));
+            veiculo.Observacao = formulario["observacao"];
+            veiculo.Placa = formulario["PUW-1514"];
+            
+
+            veiculoRepositorio.Inserir(veiculo);
+        }
+
+
     }
+
 }

@@ -14,13 +14,46 @@
 
 <html>
 <head>
+    <!--IMPORTAR FONTES DO GOOGLE FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width" />
     <title>Cadastro de Veículo</title>
+
+    <!--CONFIGURACAO DE CSS -->
+    <style>
+        body {
+            font-size: 16px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        label {
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        input, select, button {
+            min-width: 200px;
+            min-height: 24px;
+            margin-bottom: 5px;
+        }
+
+            input[type=submit] {
+                width: 300px;
+            }
+    </style>
 </head>
 <body>
+    @if (IsPost)
+    {
+        veiculoAplicacao.Inserir();
+
+        Response.Redirect("Veiculo");
+    }
+
     <h1>Cadastro de Veículos</h1>
-    <hr />
-    <form action="/" method="post">
+    <hr/>
+    <form action="" method="post">
         <!--o atributo "for" serve para o cursor ficar com o foco no objeto escolhido  -->
 
         <label for="marca">Marca:</label>
@@ -31,9 +64,8 @@
                 <option value="@marca.Id" selected="@Convert.ToBoolean(marca.Id.ToString() == veiculoAplicacao.MarcaSelecionada)">@marca.Nome</option>
             }
         </select>
-        <br />
-        <br />
-
+        <br/>
+ 
         <label for="modelos">Modelos:</label>
         <select name="modelo">
             <option value="">Selecione</option>
@@ -42,17 +74,14 @@
                 <option value="@modelo.Id">@modelo.Nome</option>
             }
         </select>
-        <br />
-        <br />
+        <br/>
         <label for="placa">Placa:</label>
         <input type="text" name="placa" value="" />
-        <br />
-        <br />
+        <br/>
 
         <label for="ano">Ano:</label>
         <input type="text" name="ano" value="" />
-        <br />
-        <br />
+        <br/>
 
         <label for="cor">Cor:</label>
         <select name="cor">
@@ -62,8 +91,7 @@
                 <option value="@cor.Id">@cor.Nome</option>
             }
         </select>
-        <br />
-        <br />
+        <br/>
 
         <label for="combustivel">Combustpivel:</label>
         <select name="combustivel">
@@ -73,8 +101,7 @@
                 <option value="@((int)combustivel)">@combustivel</option>
             }
         </select>
-        <br />
-        <br />
+        <br/>
 
         <label for="cambio">Combio:</label>
         <select name="cambio">
@@ -84,20 +111,18 @@
                 <option value="@((int)cambio)">@cambio</option>
             }
         </select>
-        <br />
-        <br />
+        <br/>
 
         <label for="observacao">Observação:</label>
-        <br />
+        <br/>
         <textarea name="observacao" rows="10" cols="40"></textarea>
-        <br />
-        <br />
+        <br/>
 
         <input type="submit" name="name" value="Gravar" />
 
     </form>
 
-    <!-- inserir o codigo javascript recarregar a pagina-->>
+    <!-- inserir o codigo javascript recarregar a pagina-->
     <script type="text/javascript">
         function obterModelos(marcaId) {
             const nomePagina = document.location.pathname;

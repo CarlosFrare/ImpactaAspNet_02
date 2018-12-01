@@ -16,12 +16,13 @@ namespace Oficina.Repositorios.SistemaArquivos.Tests
         public void InserirTest()
         {
 
-            var veiculo = new Veiculo();
+            var veiculo = new VeiculoPasseio();
 
             //veiculo.Id = 1;
             veiculo.Placa = "PUW-1514";
             veiculo.Ano = 2014;
             veiculo.Observacao = "teste";
+            veiculo.Carroceria = Carroceria.Hatch;
             veiculo.Modelo = new ModeloRepositorio().Selecionar(4);
             veiculo.Cor = new CorRepositorio().Selecionar(2);
             veiculo.Combustivel = Combustivel.Flex;

@@ -21,4 +21,23 @@
     <Combustivel>Flex</Combustivel>
     <Cambio>Automatico</Cambio>
   </Veiculo>
+  <Veiculo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Id>c9c4aa7a-63cb-4ba5-81ae-e1846b0b6e2b</Id>
+    <Ano>2018</Ano>
+    <Observacao> TESTE DE INCLUSAO DE CADASTRO</Observacao>
+    <Modelo>
+      <Id>2</Id>
+      <Nome>Civic</Nome>
+      <Marca>
+        <Id>2</Id>
+        <Nome>HONDA</Nome>
+      </Marca>
+    </Modelo>
+    <Cor>
+      <Id>2</Id>
+      <Nome>Azul</Nome>
+    </Cor>
+    <Combustivel>Gasolina</Combustivel>
+    <Cambio>Automatico</Cambio>
+  </Veiculo>
 </veiculos>
