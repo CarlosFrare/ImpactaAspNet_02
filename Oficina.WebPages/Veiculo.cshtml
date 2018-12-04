@@ -41,18 +41,38 @@
             input[type=submit] {
                 width: 300px;
             }
+
+        #mensagemErro {
+            height: 40px;
+            background-color:#dc3545;
+            margin-bottom: 10px;
+            color:white;
+            text-align:center;
+            vertical-align:middle;
+            line-height:40px;
+        } 
+
     </style>
 </head>
 <body>
     @if (IsPost)
     {
-        veiculoAplicacao.Inserir();
+        try
+        {
+            veiculoAplicacao.Inserir();
+            Response.Redirect("Veiculo");
 
-        Response.Redirect("Veiculo");
+        }
+        catch 
+        {
+
+        <div id="mensagemErro">@HttpContext.Current.Items["MensagemErro"] </div>
+        }
     }
 
+
     <h1>Cadastro de Veículos</h1>
-    <hr/>
+    <hr />
     <form action="" method="post">
         <!--o atributo "for" serve para o cursor ficar com o foco no objeto escolhido  -->
 
@@ -64,8 +84,8 @@
                 <option value="@marca.Id" selected="@Convert.ToBoolean(marca.Id.ToString() == veiculoAplicacao.MarcaSelecionada)">@marca.Nome</option>
             }
         </select>
-        <br/>
- 
+        <br />
+
         <label for="modelos">Modelos:</label>
         <select name="modelo">
             <option value="">Selecione</option>
@@ -74,34 +94,34 @@
                 <option value="@modelo.Id">@modelo.Nome</option>
             }
         </select>
-        <br/>
+        <br />
         <label for="placa">Placa:</label>
-        <input type="text" name="placa" value="" />
-        <br/>
+        <input type="text" name="placa" value="@Request.Form["placa"]" />
+        <br />
 
         <label for="ano">Ano:</label>
-        <input type="text" name="ano" value="" />
-        <br/>
+        <input type="text" name="ano" value="@Request.Form["ano"]" />
+        <br />
 
         <label for="cor">Cor:</label>
         <select name="cor">
             <option value="">Selecione</option>
             @foreach (var cor in veiculoAplicacao.Cores)
             {
-                <option value="@cor.Id">@cor.Nome</option>
+                <option value="@cor.Id" selected="@Convert.ToBoolean(cor.Id.ToString() ==Request.Form["cor"])"> @cor.Nome</option>
             }
         </select>
-        <br/>
+        <br />
 
         <label for="combustivel">Combustpivel:</label>
         <select name="combustivel">
             <option value="">Selecione</option>
             @foreach (var combustivel in veiculoAplicacao.Combustiveis)
             {
-                <option value="@((int)combustivel)">@combustivel</option>
+                <option value="@((int)combustivel)" selected="" >@combustivel</option>
             }
         </select>
-        <br/>
+        <br />
 
         <label for="cambio">Combio:</label>
         <select name="cambio">
@@ -111,12 +131,12 @@
                 <option value="@((int)cambio)">@cambio</option>
             }
         </select>
-        <br/>
+        <br />
 
         <label for="observacao">Observação:</label>
-        <br/>
+        <br />
         <textarea name="observacao" rows="10" cols="40"></textarea>
-        <br/>
+        <br />
 
         <input type="submit" name="name" value="Gravar" />
 
