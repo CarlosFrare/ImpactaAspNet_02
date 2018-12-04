@@ -40,4 +40,44 @@
     <Combustivel>Gasolina</Combustivel>
     <Cambio>Automatico</Cambio>
   </Veiculo>
+  <VeiculoPasseio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Id>3d72b2f5-f77c-433e-89b3-aea8608809c6</Id>
+    <Ano>2018</Ano>
+    <Observacao>hgff</Observacao>
+    <Modelo>
+      <Id>1</Id>
+      <Nome>FOX</Nome>
+      <Marca>
+        <Id>1</Id>
+        <Nome>VOLKSWAGEN</Nome>
+      </Marca>
+    </Modelo>
+    <Cor>
+      <Id>4</Id>
+      <Nome>Prata</Nome>
+    </Cor>
+    <Combustivel>Eletrico</Combustivel>
+    <Cambio>SemiAutomatico</Cambio>
+    <Carroceria>Hatch</Carroceria>
+  </VeiculoPasseio>
+  <VeiculoPasseio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Id>4b586999-bc5c-46cc-bd7f-38f67936897b</Id>
+    <Ano>2018</Ano>
+    <Observacao>dsd</Observacao>
+    <Modelo>
+      <Id>1</Id>
+      <Nome>FOX</Nome>
+      <Marca>
+        <Id>1</Id>
+        <Nome>VOLKSWAGEN</Nome>
+      </Marca>
+    </Modelo>
+    <Cor>
+      <Id>3</Id>
+      <Nome>Amarelo</Nome>
+    </Cor>
+    <Combustivel>Alcool</Combustivel>
+    <Cambio>Manual</Cambio>
+    <Carroceria>Hatch</Carroceria>
+  </VeiculoPasseio>
 </veiculos>
