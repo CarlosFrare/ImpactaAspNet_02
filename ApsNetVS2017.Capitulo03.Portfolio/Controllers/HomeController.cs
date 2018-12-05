@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApsNetVS2017.Capitulo03.Portfolio.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,9 +23,21 @@ namespace ApsNetVS2017.Capitulo03.Portfolio.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.MessageMM = "Entrar em contato";
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Contact(ConatoViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            return View();
+        }
+
     }
 }
