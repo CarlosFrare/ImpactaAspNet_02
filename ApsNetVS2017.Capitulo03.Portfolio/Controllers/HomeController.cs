@@ -1,6 +1,8 @@
 ﻿using ApsNetVS2017.Capitulo03.Portfolio.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,6 +37,37 @@ namespace ApsNetVS2017.Capitulo03.Portfolio.Controllers
             {
                 return View(viewModel);
             }
+
+            var stringConexao = ConfigurationManager.ConnectionStrings["PortfolioSqlServer"].ConnectionString;
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                const string instrucao = @"
+                INSERT INTO [dbo].[Contato]
+                    ([Nome]
+                    ,[Email]
+                    ,[Mensagem])
+                    VALUES
+                    (@Nome
+                    ,@Email
+                    ,@Mensagem)";
+
+                using (var comando = new SqlCommand(instrucao, conexao))
+                {
+                    comando.Parameters.AddWithValue("@Nome", viewModel.Nome);
+                    comando.Parameters.AddWithValue("@Email", viewModel.Email);
+                    comando.Parameters.AddWithValue("@Mensagem", viewModel.Mensagem);
+
+                    comando.ExecuteNonQuery();
+                }
+ 
+                // nao precisa do comando abaixo pq o "using" ja fecha a conexao no final do bloco de codigo
+                //conexao.Close();
+            }
+
+            ModelState.Clear();
 
             return View();
         }
