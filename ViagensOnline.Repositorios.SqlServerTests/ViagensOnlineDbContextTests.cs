@@ -29,7 +29,27 @@ namespace ViagensOnline.Repositorios.SqlServer.Tests
             db.SaveChanges();
         }
 
+        [TestMethod]
+        public void AtualizarTest()
+        {
+            var destino = db.Destinos.Find(1);
 
+            destino.NomeImagem = "Berlim.png";
+            destino.Pais = "Austria";
+            db.SaveChanges();
 
+            destino = db.Destinos.Find(1);
+
+            Assert.IsTrue(destino.Pais != "Brasil");
+        }
+
+        [TestMethod]
+        public void ExcluirTest()
+        {
+            var destino = db.Destinos.Find(1);
+            db.Destinos.Remove(destino);
+            db.SaveChanges();
+
+        }
     }
 }
