@@ -16,7 +16,7 @@ namespace ViagensOnline.MVC.Controllers
     public class DestinosController : Controller
     {
         private ViagensOnlineDbContext db = new ViagensOnlineDbContext();
-        private readonly string camihoImagensDestinos = "Content/Imagens/Destinos";
+        private readonly string camihoImagensDestinos = "/Content/Imagens/Destinos";
         
         // GET: Destinos
         public ActionResult Index()
@@ -61,7 +61,9 @@ namespace ViagensOnline.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(destino);
+
+
+            return View(Mapear(destino));
         }
 
         // GET: Destinos/Create
@@ -75,16 +77,52 @@ namespace ViagensOnline.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Pais,Cidade,NomeImagem")] Destino destino)
+        //public ActionResult Create([Bind(Include = "Id,Nome,Pais,Cidade,NomeImagem")] Destino destino)
+        public ActionResult Create( DestinoViewModel viewModel)
+
         {
+            if (viewModel.ArquivoFoto == null)
+            {
+                ModelState.AddModelError("","É necessario enviar uma imagem");
+            }
+
             if (ModelState.IsValid)
             {
+                var destino = Mapear(viewModel);
+
+                SalvarFoto(viewModel.ArquivoFoto);
+
                 db.Destinos.Add(destino);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(destino);
+            return View(viewModel);
+        }
+
+        private void SalvarFoto(HttpPostedFileBase arquivoFoto)
+        {
+            //caminio virtual
+            var caminhoVirtual = Path.Combine(camihoImagensDestinos, arquivoFoto.FileName);
+
+            //caminio virtual
+            var caminhoFisico = Server.MapPath(caminhoVirtual);
+
+            arquivoFoto.SaveAs(caminhoFisico);
+        }
+
+        private Destino Mapear(DestinoViewModel viewModel)
+        {
+            var destino = new Destino();
+
+            destino.Cidade = viewModel.Cidade;
+            destino.Id = viewModel.Id;
+            destino.Nome = viewModel.Nome;
+            destino.Pais = viewModel.Pais;
+            destino.NomeImagem = viewModel.ArquivoFoto.FileName;
+
+            return destino;
+
         }
 
         // GET: Destinos/Edit/5
@@ -99,7 +137,7 @@ namespace ViagensOnline.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(destino);
+            return View(Mapear(destino));
         }
 
         // POST: Destinos/Edit/5
@@ -107,15 +145,25 @@ namespace ViagensOnline.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Pais,Cidade,NomeImagem")] Destino destino)
+        public ActionResult Edit(DestinoViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(destino).State = EntityState.Modified;
+                //db.Entry(viewModel).State = EntityState.Modified;
+
+                var destino = db.Destinos.Find(viewModel.Id);
+                db.Entry(destino).CurrentValues.SetValues(viewModel);
+
+                if (viewModel.ArquivoFoto != null)
+                {
+                    SalvarFoto(viewModel.ArquivoFoto);
+                    destino.NomeImagem = viewModel.ArquivoFoto.FileName;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(destino);
+            return View(viewModel);
         }
 
         // GET: Destinos/Delete/5
@@ -130,7 +178,7 @@ namespace ViagensOnline.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(destino);
+            return View(Mapear(destino));
         }
 
         // POST: Destinos/Delete/5
@@ -139,6 +187,9 @@ namespace ViagensOnline.MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Destino destino = db.Destinos.Find(id);
+
+            System.IO.File.Delete(Server.MapPath(Path.Combine(camihoImagensDestinos, destino.NomeImagem)));
+
             db.Destinos.Remove(destino);
             db.SaveChanges();
             return RedirectToAction("Index");
