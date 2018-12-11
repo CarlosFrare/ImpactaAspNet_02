@@ -3,7 +3,7 @@
     <h1>Tarefas</h1>
     <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="Create">Nova Tarefa</asp:LinkButton>
     <p></p>
-    <asp:GridView runat="server" DataSourceID="tarefasObjectDataSource">
+    <asp:GridView runat="server" DataSourceID="tarefasObjectDataSource" Width="100%" AutoGenerateColumns="false">
         <Columns> <asp:BoundField DataField="Nome"          HeaderText="Nome"/>         </Columns>
         <Columns> <asp:BoundField DataField="Prioridade"    HeaderText="Prioridade"/>   </Columns>
         <Columns> <asp:CheckBoxField DataField="Concluida"     HeaderText="Concluida"/>    </Columns>
