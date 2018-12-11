@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pessoal.Dominio", "Pessoal.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pessoal.Repositorios.SqlServer", "Pessoal.Repositorios.SqlServer\Pessoal.Repositorios.SqlServer.csproj", "{A8594E85-4D76-46F2-8169-EA733F872751}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pessoal.Repositorios.SqlServerTests", "Pessoal.Repositorios.SqlServerTests\Pessoal.Repositorios.SqlServerTests.csproj", "{C51AFDED-3DB1-4555-9C0F-F87088CD7887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{A8594E85-4D76-46F2-8169-EA733F872751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8594E85-4D76-46F2-8169-EA733F872751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8594E85-4D76-46F2-8169-EA733F872751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51AFDED-3DB1-4555-9C0F-F87088CD7887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51AFDED-3DB1-4555-9C0F-F87088CD7887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51AFDED-3DB1-4555-9C0F-F87088CD7887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51AFDED-3DB1-4555-9C0F-F87088CD7887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,6 +151,7 @@ Global
 		{19DB2536-66DB-4A1D-9F17-FE7B94A0072E} = {9005694B-3DFC-4B8D-B646-00AEE3230BEE}
 		{86209682-6254-48FA-A680-28FD06650255} = {43EEBBA0-C769-48C9-8598-2A890410038F}
 		{A8594E85-4D76-46F2-8169-EA733F872751} = {43EEBBA0-C769-48C9-8598-2A890410038F}
+		{C51AFDED-3DB1-4555-9C0F-F87088CD7887} = {43EEBBA0-C769-48C9-8598-2A890410038F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6935C15F-EA3B-4605-A412-F64C87B90F27}
