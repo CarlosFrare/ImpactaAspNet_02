@@ -37,7 +37,21 @@ namespace Pessoal.Repositorios.SqlServer
 
         public void Excluir(int id)
         {
-            throw new NotImplementedException();
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                using (var comando = new SqlCommand("TarefaExcluir", conexao))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+
+                    comando.Parameters.AddWithValue("@Id", id);
+                    comando.ExecuteNonQuery();
+                }
+
+            }
+
         }
 
         public int Inserir(Tarefa Tarefa)
@@ -75,12 +89,72 @@ namespace Pessoal.Repositorios.SqlServer
 
         public Tarefa Selecionar(int id)
         {
-            throw new NotImplementedException();
+            Tarefa tarefa = null;
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                using (var comando = new SqlCommand("TarefaSelecionar", conexao))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@Id", id);
+
+                    using (var registro = comando.ExecuteReader())
+                    {
+                        if (registro.Read())
+                        {
+                           tarefa = (Mapear(registro));
+                        }
+                    }
+
+                }
+
+            }
+
+            return tarefa;
         }
 
         public List<Tarefa> Selecionar()
         {
-            throw new NotImplementedException();
+            var tarefas = new List<Tarefa>();
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                using (var comando = new SqlCommand("TarefaSelecionar", conexao))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+
+                    //execute reader retorna os 
+                    using (var registro = comando.ExecuteReader())
+                    {
+                        while (registro.Read())
+                        {
+                            tarefas.Add(Mapear(registro));
+                        }
+                    }
+
+                }
+
+            }
+
+
+            return tarefas;
+        }
+
+        private Tarefa Mapear(SqlDataReader registro)
+        {
+            var tarefa = new Tarefa();
+
+            tarefa.Id = (int)registro["Id"];
+            tarefa.Concluida = Convert.ToBoolean( registro["Concluida"]);
+            tarefa.Nome = Convert.ToString(registro["Nome"]);
+            tarefa.Observacoes = Convert.ToString(registro["Observacoes"]);
+            tarefa.Prioridade = (Prioridade) Convert.ToInt32(registro["Prioridade"]);
+
+            return tarefa;
         }
     }
 }

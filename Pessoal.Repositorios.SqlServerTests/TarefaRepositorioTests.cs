@@ -44,5 +44,29 @@ namespace Pessoal.Repositorios.SqlServer.Tests
             repositorio.Atualizar(tarefa);
 
         }
+
+        [TestMethod()]
+        public void SelecionarTest()
+        {
+
+            foreach (var tarefa in repositorio.Selecionar())
+            {
+                Console.WriteLine($"{tarefa.Id} - {tarefa.Nome} - {tarefa.Observacoes} - {tarefa.Prioridade}");
+            }
+
+            //Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void ExcluirTest()
+        {
+            var tarefa = new Tarefa();
+            tarefa.Id = 1;
+
+            repositorio.Excluir(tarefa.Id);
+            
+            // ou pode ser assim
+            //Assert.IsNull(repositorio.Excluir(1));
+        }
     }
 }
