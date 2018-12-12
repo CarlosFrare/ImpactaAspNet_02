@@ -53,6 +53,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Pessoal.Database", "Pessoal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pessoal.WebForms", "Pessoal.WebForms\Pessoal.WebForms.csproj", "{26DD9DC4-36D3-4CA3-876E-1B70232466C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApsNetVS2017.Capitulo08.EF.ModelFirst", "ApsNetVS2017.Capitulo08.EF.ModelFirst\ApsNetVS2017.Capitulo08.EF.ModelFirst.csproj", "{0B73B1D1-6AFC-441A-8DC2-4BC0C8A07DF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{26DD9DC4-36D3-4CA3-876E-1B70232466C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26DD9DC4-36D3-4CA3-876E-1B70232466C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26DD9DC4-36D3-4CA3-876E-1B70232466C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B73B1D1-6AFC-441A-8DC2-4BC0C8A07DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B73B1D1-6AFC-441A-8DC2-4BC0C8A07DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B73B1D1-6AFC-441A-8DC2-4BC0C8A07DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B73B1D1-6AFC-441A-8DC2-4BC0C8A07DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
