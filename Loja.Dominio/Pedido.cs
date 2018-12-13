@@ -9,7 +9,5 @@ namespace Loja.Dominio
         public DateTime Data { get; set; } = DateTime.Now;
         public Cliente Cliente { get; set; }
         public List<Produto> Produtos { get; set; }
-
-
     }
 }

@@ -7,6 +7,7 @@ namespace Loja.Repositorios.SqlServer.ModelConfiguration
     {
         public PedidoConfiguration()
         {
+            HasRequired(pe => pe.Cliente);
         }
     }
 }

@@ -3,10 +3,13 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Loja.Repositorios.SqlServer.ModelConfiguration
 {
-    class ClienteConfiguration : EntityTypeConfiguration<Cliente>
+    internal class ClienteConfiguration : EntityTypeConfiguration<Cliente>
     {
         public ClienteConfiguration()
         {
+            Property(cli => cli.Nome)
+                .IsRequired()
+                .HasMaxLength(200);
         }
     }
 }

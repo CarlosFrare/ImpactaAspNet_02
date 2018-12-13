@@ -12,6 +12,7 @@ namespace Loja.Repositorios.SqlServer
 {
     public class LojaDbContext: DbContext
     {
+        //metodo construtor
         public LojaDbContext() : base("lojaSqlServer")
         {
 
@@ -22,6 +23,7 @@ namespace Loja.Repositorios.SqlServer
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,15 +33,14 @@ namespace Loja.Repositorios.SqlServer
             //#region serve para agrupar o comando
             /*
              * #region Produto
-
             #endregion
             */
 
-            modelBuilder.Conventions.Add(new ProdutoConfiguration());
-            modelBuilder.Conventions.Add(new CategoriaConfiguration());
-            modelBuilder.Conventions.Add(new ClienteConfiguration());
-            modelBuilder.Conventions.Add(new PedidoConfiguration());
-
+            modelBuilder.Configurations.Add(new ProdutoConfiguration());
+            modelBuilder.Configurations.Add(new CategoriaConfiguration());
+            modelBuilder.Configurations.Add(new ClienteConfiguration());
+            modelBuilder.Configurations.Add(new PedidoConfiguration());
+            modelBuilder.Configurations.Add(new ProdutoImagemConfiguration());
 
         }
     }
