@@ -48,6 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LojaDbContext.cs" />
+    <Compile Include="LojaDbInitializer.cs" />
+    <Compile Include="Migrations\201812132238254_InitialCreate.cs" />
+    <Compile Include="Migrations\201812132238254_InitialCreate.Designer.cs">
+      <DependentUpon>201812132238254_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812132335077_RenomearProdDescontinuadoParaAtivo.cs" />
+    <Compile Include="Migrations\201812132335077_RenomearProdDescontinuadoParaAtivo.Designer.cs">
+      <DependentUpon>201812132335077_RenomearProdDescontinuadoParaAtivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfiguration\CategoriaConfiguration.cs" />
     <Compile Include="ModelConfiguration\ClienteConfiguration.cs" />
     <Compile Include="ModelConfiguration\PedidoConfiguration.cs" />
@@ -65,6 +75,13 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812132238254_InitialCreate.resx">
+      <DependentUpon>201812132238254_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812132335077_RenomearProdDescontinuadoParaAtivo.resx">
+      <DependentUpon>201812132335077_RenomearProdDescontinuadoParaAtivo.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

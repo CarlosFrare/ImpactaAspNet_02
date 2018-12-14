@@ -1,4 +1,5 @@
 ﻿using Loja.Dominio;
+using Loja.Repositorios.SqlServer.Migrations;
 using Loja.Repositorios.SqlServer.ModelConfiguration;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,9 @@ namespace Loja.Repositorios.SqlServer
         //metodo construtor
         public LojaDbContext() : base("lojaSqlServer")
         {
+            //  Database.SetInitializer(new LojaDbInitializer()); //pag 191 apostila
 
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LojaDbContext,Configuration>());
         }
 
         public DbSet<Produto> Produtos { get; set; }
@@ -43,5 +46,7 @@ namespace Loja.Repositorios.SqlServer
             modelBuilder.Configurations.Add(new ProdutoImagemConfiguration());
 
         }
+
+        public System.Data.Entity.DbSet<Loja.Dominio.ProdutoImagem> ProdutoImagems { get; set; }
     }
 }
