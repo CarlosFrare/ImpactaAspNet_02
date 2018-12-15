@@ -127,7 +127,7 @@ namespace Loja.MVC.Areas.Admin.Controllers
         }
 
 
-        [ActionName("/Admin/Produtos/Categoria")]
+        [ActionName("Categoria")]
         public ActionResult ObterProdutoPorCategoria(int categoriaId)
         {
             var produtos = db.Produtos
