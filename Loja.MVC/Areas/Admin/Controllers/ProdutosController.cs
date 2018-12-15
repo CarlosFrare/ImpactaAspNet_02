@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Loja.Dominio;
+using Loja.Mvc.Mapeamento;
+using Loja.MVC.Areas.Admin.Models;
 using Loja.Repositorios.SqlServer;
 
 namespace Loja.MVC.Areas.Admin.Controllers
@@ -14,12 +16,13 @@ namespace Loja.MVC.Areas.Admin.Controllers
     public class ProdutosController : Controller
     {
         private LojaDbContext db = new LojaDbContext();
+        private readonly ProdutoMapeamento map = new ProdutoMapeamento();
 
         // GET: Admin/Produtos
         public ActionResult Index()
         {
-            var produtos = db.Produtos.Include(p => p.Imagem);
-            return View(produtos.ToList());
+            //var produtos = db.Produtos.Include(p => p.Imagem);
+            return View(map.Mapear(db.Produtos.ToList()));
         }
 
         // GET: Admin/Produtos/Details/5
@@ -40,8 +43,8 @@ namespace Loja.MVC.Areas.Admin.Controllers
         // GET: Admin/Produtos/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.ProdutoImagems, "ProdutoId", "ContentType");
-            return View();
+            //ViewBag.Id = new SelectList(map.Mapear(new Produto(),db.Categorias.ToList())), "ProdutoId", "ContentType");
+            return View(map.Mapear(new Produto(), db.Categorias.ToList()));
         }
 
         // POST: Admin/Produtos/Create
@@ -49,17 +52,19 @@ namespace Loja.MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Preco,Estoque,Ativo")] Produto produto)
+        public ActionResult Create(ProdutoViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var produto = map.Mapear(viewModel, db);
+
                 db.Produtos.Add(produto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.ProdutoImagems, "ProdutoId", "ContentType", produto.Id);
-            return View(produto);
+            ViewBag.Id = new SelectList(db.ProdutoImagems, "ProdutoId", "ContentType", viewModel.Id);
+            return View(viewModel);
         }
 
         // GET: Admin/Produtos/Edit/5
@@ -119,6 +124,17 @@ namespace Loja.MVC.Areas.Admin.Controllers
             db.Produtos.Remove(produto);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        [ActionName("/Admin/Produtos/Categoria")]
+        public ActionResult ObterProdutoPorCategoria(int categoriaId)
+        {
+            var produtos = db.Produtos
+                .Where(p => p.Categoria.Id == categoriaId)
+                .ToList();
+
+            return Json(map.Mapear(produtos), JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
