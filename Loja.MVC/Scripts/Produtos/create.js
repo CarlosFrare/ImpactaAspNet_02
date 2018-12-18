@@ -1,9 +1,17 @@
 ﻿const pesquisarButton = $("#pesquisarButton");
 
+
 pesquisarButton.click(obterProdutoPorCategoria)
 
+
+//#("#closePopover").click(function () {
+//    pesquisarButton.popover("destroy");
+//})
+
+$(document).on("click", "#closePopover", () => pesquisarButton.popover("destroy"));
+
 function obterProdutoPorCategoria() {
-    const categoriaId = $("#CategoriaId")
+    const categoriaId = $("#CategoriaId").val();
 
     $.ajax({
         url: "/Admin/Produtos/Categoria",
