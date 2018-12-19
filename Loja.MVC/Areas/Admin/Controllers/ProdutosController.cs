@@ -21,8 +21,11 @@ namespace Loja.MVC.Areas.Admin.Controllers
         // GET: Admin/Produtos
         public ActionResult Index()
         {
+
+            throw new Exception("teste");
             //var produtos = db.Produtos.Include(p => p.Imagem);
             return View(map.Mapear(db.Produtos.ToList()));
+
         }
 
         // GET: Admin/Produtos/Details/5
