@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Loja.Dominio;
@@ -13,22 +14,29 @@ using Loja.Repositorios.SqlServer;
 
 namespace Loja.MVC.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProdutosController : Controller
     {
+
+        //segurança e autenticacao
+
         private LojaDbContext db = new LojaDbContext();
         private readonly ProdutoMapeamento map = new ProdutoMapeamento();
 
         // GET: Admin/Produtos
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
 
-            throw new Exception("teste");
-            //var produtos = db.Produtos.Include(p => p.Imagem);
+           // throw new Exception("teste");
+            var produtos = db.Produtos.Include(p => p.Imagem);
             return View(map.Mapear(db.Produtos.ToList()));
 
         }
 
         // GET: Admin/Produtos/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +48,7 @@ namespace Loja.MVC.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(map.Mapear(produto));
         }
 
         // GET: Admin/Produtos/Create
@@ -73,7 +81,12 @@ namespace Loja.MVC.Areas.Admin.Controllers
         // GET: Admin/Produtos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (!((ClaimsIdentity)User.Identity).HasClaim(c => c.Type == "Produtos" && c.Value.Contains("|Edita|")))
+            {
+                return RedirectToAction("Login", "Account", new { area ="" });
+            }
+
+                if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -83,7 +96,7 @@ namespace Loja.MVC.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.Id = new SelectList(db.ProdutoImagems, "ProdutoId", "ContentType", produto.Id);
-            return View(produto);
+            return View(map.Mapear(produto, db.Categorias.ToList()));
         }
 
         // POST: Admin/Produtos/Edit/5
@@ -104,6 +117,8 @@ namespace Loja.MVC.Areas.Admin.Controllers
         }
 
         // GET: Admin/Produtos/Delete/5
+        [Authorize(Roles = "Master")]
+        [Authorize(Roles = "Gerente, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,10 +130,12 @@ namespace Loja.MVC.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(map.Mapear(produto));
         }
 
         // POST: Admin/Produtos/Delete/5
+        [Authorize(Roles ="Master")]
+        [Authorize(Roles = "Gerente, Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
